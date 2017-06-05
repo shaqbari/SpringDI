@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 클래스 등록 -->
+	<!-- default 생성자 매개변수가 있으면 에러 -->
+	<bean id="sa" class="com.sist.sawon.Sawon" scope="prototype"
+		init-method="init"
+		destroy-method="distroy"
+		p:sabun="1"
+		p:name="홍길동"
+		p:dept="개발부"
+	/>
+	<!--  
+		Object clone() ==> 복제 // scope="prototype"를 지정할 경우
+		Class clsName=Class.forName(Class명);
+		Object obj=clsName.newInstance();
+		map.put("sa", obj); ==> 주소가 동일(싱글톤)
+		//init-method="init"로 처음한번 호출 가능
+	-->
+	<bean id="sa2" class="com.sist.sawon.Sawon2">
+		<constructor-arg value="2"/>
+		<constructor-arg value="심청이"/>
+		<constructor-arg value="영업부"/>
+	</bean>
+	<!-- 인자 있는 생성자가 있으면 constructor-arg에 넣어줘야 한다. 생성자 di-->
+	
+</beans>

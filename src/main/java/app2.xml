@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	
+	<bean id="member1" class="com.sist.temp.Member"
+		p:id="admin"
+		p:name="춘향이"
+		p:addr="서울"
+			
+	/>
+	<bean id="member2" class="com.sist.temp.Member"
+		p:id="hong"
+		p:name="홍길동"
+		p:addr="경기"
+			
+	/>
+	<bean id="member3" class="com.sist.temp.Member"
+		p:id="park"
+		p:name="박문수"
+		p:addr="강원"
+			
+	/>
+	<!-- <bean id="mc" class="com.sist.temp.MemberConfig"
+		p:mem-ref="member"
+	/> -->	
+	<!-- 
+	setter들어가기 전에 메모리할당을 다 해두기 때문에 xml설정파일에서 순서는 상관이 없다.
+	하지만 보기에는 순서를 잘 지정해두자.
+	
+	일반변수가 아닌 클래스를 set할때는 p:mem-ref=를 써야 한다.
+	class간 관계도를 설정하는 것이 xml설정파일읻. 
+	
+	-->
+	
+	<bean id="mc" class="com.sist.temp.MemberConfig">
+		<property name="list">
+			<list>
+				<ref bean="member1"/><!-- list.add(member1) -->
+				<ref bean="member2"/>
+				<ref bean="member3"/>
+			</list>
+		</property>
+		<property name="map">
+			<map>
+				<entry key="id" value="admin"/>
+			</map>
+		</property>
+	</bean>
+</beans>
